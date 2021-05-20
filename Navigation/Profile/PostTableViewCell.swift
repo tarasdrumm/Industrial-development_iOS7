@@ -114,5 +114,4 @@ class PostTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate(constraints)
     }
-
 }
