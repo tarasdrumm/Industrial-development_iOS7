@@ -10,60 +10,64 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    let post: Post = Post(title: "Пост")
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print(type(of: self), #function)
-    }
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Open post", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
+        button.titleLabel!.adjustsFontSizeToFitWidth = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(type(of: self), #function)
+        view.backgroundColor = .systemGreen
+        setupButton()
+        setupNavigationBar()
+        setupTabBarItemsImage()
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(type(of: self), #function)
+    private func setupButton() {
+        view.addSubview(button)
+        
+        let constraints = [
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: 40),
+            button.widthAnchor.constraint(equalToConstant: 70)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(type(of: self), #function)
+    private func setupNavigationBar() {
+        
+        navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Feed"
+        
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "post" else {
+    private func setupTabBarItemsImage() {
+        
+        guard let items = tabBarController?.tabBar.items else {
             return
         }
-        guard let postViewController = segue.destination as? PostViewController else {
-            return
+
+        let images = ["house.fill", "person.fill"]
+
+        for i in 0...1 {
+            items[i].image = UIImage(systemName: images[i])
         }
-        postViewController.post = post
     }
+    
+    // MARK: Actions
+    
+    @objc func buttonTaped() {
+        let postVC = PostViewController()
+        show(postVC, sender: nil)
+    }
+
 }

@@ -26,16 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureAppApperance() {
-
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let feedViewController = storyboard.instantiateViewController(identifier: "Feed")
-        let profileViewController = storyboard.instantiateViewController(identifier: "Profile")
+      
+        let feedViewController = FeedViewController()
+        let logInViewController = LogInViewController()
+        
+        feedViewController.title = "Feed"
+        logInViewController.title = "Profile"
+        
+        let feedNavigationViewController = UINavigationController(rootViewController: feedViewController)
+        let logInNavigationViewController = UINavigationController(rootViewController: logInViewController)
         
         let tabBarVC = UITabBarController()
-        tabBarVC.viewControllers = [feedViewController, profileViewController]
-       
+        tabBarVC.setViewControllers([feedNavigationViewController, logInNavigationViewController], animated: true)
+
         self.window?.rootViewController = tabBarVC
         self.window?.makeKeyAndVisible()
     }

@@ -13,6 +13,7 @@ final class ProfileViewController: UIViewController {
     // MARK: Subviews
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
+    let photosVC = PhotosViewController()
     
     // MARK: Properties
     
@@ -57,6 +58,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         setupTableView()
     }
     
@@ -125,7 +127,7 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "photosDetailSegue", sender: nil)
+        show(photosVC, sender: nil)
     }
 }
 

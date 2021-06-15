@@ -90,6 +90,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupSubviews()
         
         navigationController?.navigationBar.isHidden = true
@@ -182,11 +183,13 @@ final class LogInViewController: UIViewController {
     // MARK: Button action
 
     @objc private func buttonTapped() {
-        performSegue(withIdentifier: "showProfile", sender: nil)
+        let profileVC = ProfileViewController()
+        show(profileVC, sender: nil)
     }
 
     //MARK: Extension alpha
 }
+
 extension UIImage {
     func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
