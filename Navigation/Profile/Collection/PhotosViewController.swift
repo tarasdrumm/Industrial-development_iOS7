@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class PhotosViewController: UIViewController {
     
@@ -20,7 +21,6 @@ final class PhotosViewController: UIViewController {
         collectionView.delegate = self
         collectionView.contentMode = .scaleAspectFill
         collectionView.clipsToBounds = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
     }()
@@ -48,16 +48,12 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setupViews() {
+        
         view.addSubview(collectionView)
-        
-        let constraints = [
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        collectionView.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(16)
+            maker.left.right.bottom.equalToSuperview()
+        }
     }
 }
 

@@ -10,10 +10,24 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-    var post: Post?
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = post?.title
+        setupNavigationBar()
+        
+        view.backgroundColor = .systemPink
+    }
+    
+    private func setupNavigationBar() {
+        
+        title = "Пост"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(showAlert))
+    }
+    
+    @objc private func showAlert() {
+        let infoVC = InfoViewController()
+        present(infoVC, animated: true, completion: nil)
     }
 }

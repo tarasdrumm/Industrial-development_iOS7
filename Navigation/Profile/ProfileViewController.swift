@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileViewController: UIViewController {
    
     // MARK: Subviews
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
+    let photosVC = PhotosViewController()
     
     // MARK: Properties
     
@@ -57,6 +59,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         setupTableView()
     }
     
@@ -65,34 +68,30 @@ final class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: photosCellId)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+    
         view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        tableView.snp.makeConstraints { maker in
+            maker.edges.equalToSuperview()
+        }
     }
 }
 
-// MARK: - UITableViewDataSource
+ // MARK: - UITableViewDataSource
+
 extension ProfileViewController: UITableViewDataSource {
-   
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 1 : postsViewModel.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell: UITableViewCell
-                
+    
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: photosCellId, for: indexPath)
             (cell as? PhotosTableViewCell)?.setup(imageNames: photos)
@@ -107,6 +106,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
+
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -120,12 +120,13 @@ extension ProfileViewController: UITableViewDelegate {
         guard section == 0 else {
             return .zero
         }
+        
         return 200
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "photosDetailSegue", sender: nil)
+        show(photosVC, sender: nil)
     }
 }
 

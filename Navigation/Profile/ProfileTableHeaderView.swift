@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileTableHeaderView: UIView {
     
@@ -16,21 +17,17 @@ class ProfileTableHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 3
-        imageView.layer.cornerRadius = avatarImageSize.height/2
+        imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
-        addSubview(imageView)
         
         return imageView
     }()
-
-    private let avatarImageSize: CGSize = .init(width: 100, height: 100)
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
         label.text = "Hipster cat"
-        addSubview(label)
         
         return label
     }()
@@ -40,7 +37,6 @@ class ProfileTableHeaderView: UIView {
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.textColor = .gray
         textField.placeholder = "Waiting for something..."
-        addSubview(textField)
         
         return textField
     }()
@@ -55,7 +51,6 @@ class ProfileTableHeaderView: UIView {
         statusLabel.layer.borderColor = UIColor.black.cgColor
         statusLabel.layer.masksToBounds = true
         statusLabel.backgroundColor = .white
-        addSubview(statusLabel)
         
         return statusLabel
     }()
@@ -71,68 +66,56 @@ class ProfileTableHeaderView: UIView {
         button.layer.shadowRadius = 4.0
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        addSubview(button)
         
         return button
     }()
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        let defaultInset: CGFloat = 16
-
-        avatarImageView.frame = CGRect(
-            x: defaultInset,
-            y: defaultInset,
-            width: avatarImageSize.width,
-            height: avatarImageSize.height
-        )
-
-        actionButton.frame = CGRect(
-            x: defaultInset,
-            y: avatarImageView.frame.maxY + defaultInset,
-            width: frame.width - defaultInset * 2,
-            height: 50
-        )
-
-        let statusTextFieldHeight: CGFloat = 45
-        let statusTextFieldX = avatarImageView.frame.maxX + defaultInset
-        let statusTextFieldY = actionButton.frame.origin.y - 38 - statusTextFieldHeight
-        let statusTextFieldWidth = frame.width - statusTextFieldX - defaultInset
-
-        statusTextField.frame = CGRect(
-            x: statusTextFieldX,
-            y: statusTextFieldY,
-            width: statusTextFieldWidth,
-            height: statusTextFieldHeight
-        )
+        setupLayout()
+    }
+    
+    private func setupLayout() {
         
-        let statusLabelHeight: CGFloat = 40
-        let statusLabelX = avatarImageView.frame.maxX + defaultInset
-        let statusLabelY = actionButton.frame.origin.y - statusTextFieldHeight
-        let statusLabelWidth = frame.width - statusTextFieldX - defaultInset
-
-        statusLabel.frame = CGRect(
-            x: statusLabelX,
-            y: statusLabelY,
-            width: statusLabelWidth,
-            height: statusLabelHeight
-        )
-         
-        let nameLabelX = avatarImageView.frame.maxX + defaultInset
-
-        nameLabel.frame = CGRect(
-            x: nameLabelX,
-            y: 27,
-            width: frame.width - avatarImageSize.width - defaultInset * 2,
-            height: 35
-        )
+        addSubview(avatarImageView)
+        avatarImageView.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(16)
+            maker.left.equalToSuperview().inset(16)
+            maker.height.width.equalTo(100)
+        }
+        
+        addSubview(nameLabel)
+        nameLabel.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(27)
+            maker.left.equalTo(avatarImageView.snp.right).offset(16)
+            maker.height.equalTo(35)
+        }
+        
+        addSubview(statusTextField)
+        statusTextField.snp.makeConstraints { maker in
+            maker.top.equalTo(nameLabel.snp.bottom).offset(0)
+            maker.left.equalTo(avatarImageView.snp.right).offset(16)
+        }
+        
+        addSubview(statusLabel)
+        statusLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(statusTextField.snp.bottom).offset(5)
+            maker.left.equalTo(avatarImageView.snp.right).offset(16)
+            maker.right.equalToSuperview().inset(16)
+            maker.height.equalTo(40)
+        }
+        
+        addSubview(actionButton)
+        actionButton.snp.makeConstraints { maker in
+            maker.top.equalTo(avatarImageView.snp.bottom).offset(16)
+            maker.left.right.equalToSuperview().inset(16)
+            maker.height.equalTo(50)
+        }
     }
 
     @objc private func buttonTapped() {
         print(statusTextField.text!)
     }
-
 }
 
  

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PostTableViewCell: UITableViewCell {
     
@@ -15,7 +16,6 @@ class PostTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -27,7 +27,6 @@ class PostTableViewCell: UITableViewCell {
         postImage.contentMode = .scaleAspectFit
         postImage.clipsToBounds = false
         postImage.backgroundColor = .black
-        postImage.translatesAutoresizingMaskIntoConstraints = false
         
         return postImage
     }()
@@ -37,7 +36,6 @@ class PostTableViewCell: UITableViewCell {
         description.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         description.textColor = .systemGray
         description.numberOfLines = 0
-        description.translatesAutoresizingMaskIntoConstraints = false
         
         return description
     }()
@@ -46,7 +44,6 @@ class PostTableViewCell: UITableViewCell {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         likes.textColor = .black
-        likes.translatesAutoresizingMaskIntoConstraints = false
         
         return likes
     }()
@@ -55,7 +52,6 @@ class PostTableViewCell: UITableViewCell {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         views.textColor = .black
-        views.translatesAutoresizingMaskIntoConstraints = false
         
         return views
     }()
@@ -64,7 +60,7 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
     }
-    
+   
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupLayout()
@@ -79,39 +75,36 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private func setupLayout() {
-       
+        
         contentView.addSubview(authorNameLabel)
-        contentView.addSubview(postImageView)
-        contentView.addSubview(descriptionLabel)
+        authorNameLabel.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(16)
+            maker.left.right.equalToSuperview().inset(16)
+        }
+        
         contentView.addSubview(likesLabel)
+        likesLabel.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(16)
+            maker.left.equalToSuperview().inset(16)
+        }
+        
         contentView.addSubview(viewsLabel)
+        viewsLabel.snp.makeConstraints { maker in
+            maker.bottom.equalToSuperview().inset(16)
+            maker.right.equalToSuperview().inset(16)
+        }
+        
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { maker in
+            maker.bottom.equalTo(likesLabel.snp.top).offset(-16)
+            maker.left.right.equalToSuperview().inset(16)
+        }
 
-        let constraints = [
-            authorNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            authorNameLabel.bottomAnchor.constraint(equalTo: postImageView.topAnchor, constant: -12),
-            authorNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            authorNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-
-            postImageView.topAnchor.constraint(equalTo: authorNameLabel.bottomAnchor, constant: 12),
-            postImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -16),
-            postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-
-            descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: likesLabel.topAnchor, constant: -16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: viewsLabel.topAnchor, constant: -16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-
-            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: -16),
-            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-
-            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: -16),
-            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        contentView.addSubview(postImageView)
+        postImageView.snp.makeConstraints { maker in
+            maker.top.equalTo(authorNameLabel.snp.bottom).offset(12)
+            maker.left.right.equalToSuperview()
+            maker.bottom.equalTo(descriptionLabel.snp.top).offset(-16)
+        }
     }
 }

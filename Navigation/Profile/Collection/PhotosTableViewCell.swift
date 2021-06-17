@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PhotosTableViewCell: UITableViewCell {
     
@@ -43,30 +44,24 @@ class PhotosTableViewCell: UITableViewCell {
         photoLabel.text = "Photos"
         photoLabel.textColor = .black
         photoLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        photoLabel.translatesAutoresizingMaskIntoConstraints = false
     
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.distribution = .fillEqually
         stackView.clipsToBounds = true
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-       
-        contentView.addSubview(stackView)
+    
         contentView.addSubview(photoLabel)
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
-            stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
-            stackView.heightAnchor.constraint(equalToConstant: 100)
-        ])
+        photoLabel.snp.makeConstraints { maker in
+            maker.top.left.equalToSuperview().inset(12)
+        }
         
-        NSLayoutConstraint.activate([
-            photoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            photoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            photoLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -12)
-        ])
+        contentView.addSubview(stackView)
+        stackView.snp.makeConstraints { maker in
+            maker.left.right.equalToSuperview().inset(12)
+            maker.top.equalTo(photoLabel.snp.bottom).offset(12)
+            maker.bottom.equalToSuperview()
+            maker.height.equalTo(100)
+        }
     }
 }
 

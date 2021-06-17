@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class LogInViewController: UIViewController {
     
@@ -20,8 +21,9 @@ final class LogInViewController: UIViewController {
     }()
     
     private lazy var contentView: UIView = {
-        let view = UIView()
-        return view
+        let contentView = UIView()
+        
+        return contentView
     }()
     
     private lazy var logoImageView: UIImageView = {
@@ -90,13 +92,13 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupSubviews()
         
         navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -128,65 +130,50 @@ final class LogInViewController: UIViewController {
     
     private func setupSubviews() {
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: scrollView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: scrollView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
-        ])
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.snp.makeConstraints { maker in
+            maker.edges.equalTo(view)
+        }
         
         scrollView.addSubview(contentView)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: contentView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: contentView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: contentView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 0)
-        ])
-        
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.snp.makeConstraints { maker in
+            maker.left.right.equalTo(view)
+            maker.top.bottom.height.width.equalTo(scrollView)
+        }
         
         contentView.addSubview(logoImageView)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: logoImageView, attribute: .top, relatedBy: .equal , toItem: scrollView, attribute: .top, multiplier: 1, constant: 120),
-            NSLayoutConstraint(item: logoImageView, attribute: .centerX, relatedBy: .equal, toItem: scrollView, attribute: .centerX, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: logoImageView, attribute: .height, relatedBy: .equal, toItem: scrollView, attribute: .height, multiplier: 0, constant: 100),
-            NSLayoutConstraint(item: logoImageView, attribute: .width, relatedBy: .equal, toItem: scrollView, attribute: .width, multiplier: 0, constant: 100)
-        ])
-
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.snp.makeConstraints { maker in
+            maker.top.equalTo(scrollView).offset(120)
+            maker.centerX.equalTo(scrollView)
+            maker.height.equalTo(100)
+            maker.width.equalTo(100)
+        }
         
         contentView.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal , toItem: logoImageView, attribute: .bottom, multiplier: 1, constant: 120),
-            NSLayoutConstraint(item: stackView, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: stackView, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -16),
-            NSLayoutConstraint(item: stackView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 100),
-        ])
-        
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        stackView.snp.makeConstraints { maker in
+            maker.top.equalTo(logoImageView.snp.bottom).offset(120)
+            maker.left.right.equalToSuperview().inset(16)
+            maker.height.equalTo(100)
+        }
         
         contentView.addSubview(logInButton)
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: logInButton, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: logInButton, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: logInButton, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: -16),
-            NSLayoutConstraint(item: logInButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 50),
-        ])
+        logInButton.snp.makeConstraints { maker in
+            maker.top.equalTo(stackView.snp.bottom).offset(16)
+            maker.left.right.equalToSuperview().inset(16)
+            maker.height.equalTo(50)
+        }
     }
    
     // MARK: Button action
 
     @objc private func buttonTapped() {
-        performSegue(withIdentifier: "showProfile", sender: nil)
+        let profileVC = ProfileViewController()
+        show(profileVC, sender: nil)
     }
 
     //MARK: Extension alpha
 }
+
 extension UIImage {
     func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
