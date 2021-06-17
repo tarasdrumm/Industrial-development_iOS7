@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class InfoViewController: UIViewController {
     
@@ -16,7 +17,6 @@ class InfoViewController: UIViewController {
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         button.titleLabel!.adjustsFontSizeToFitWidth = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
@@ -28,16 +28,13 @@ class InfoViewController: UIViewController {
     }
     
     private func setupButton() {
+        
         view.addSubview(button)
-        
-        let constraints = [
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            button.heightAnchor.constraint(equalToConstant: 40),
-            button.widthAnchor.constraint(equalToConstant: 70)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        button.snp.makeConstraints { maker in
+            maker.centerX.centerY.equalToSuperview()
+            maker.height.equalTo(40)
+            maker.width.equalTo(70)
+        }
     }
     
     // MARK: Actions

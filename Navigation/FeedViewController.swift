@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class FeedViewController: UIViewController {
     
@@ -16,7 +17,6 @@ final class FeedViewController: UIViewController {
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
         button.titleLabel!.adjustsFontSizeToFitWidth = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
@@ -27,20 +27,16 @@ final class FeedViewController: UIViewController {
         setupButton()
         setupNavigationBar()
         setupTabBarItemsImage()
-        
     }
     
     private func setupButton() {
+       
         view.addSubview(button)
-        
-        let constraints = [
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            button.heightAnchor.constraint(equalToConstant: 40),
-            button.widthAnchor.constraint(equalToConstant: 70)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        button.snp.makeConstraints { maker in
+            maker.centerX.centerY.equalToSuperview()
+            maker.height.equalTo(40)
+            maker.width.equalTo(70)
+        }
     }
     
     private func setupNavigationBar() {
@@ -69,5 +65,4 @@ final class FeedViewController: UIViewController {
         let postVC = PostViewController()
         show(postVC, sender: nil)
     }
-
 }

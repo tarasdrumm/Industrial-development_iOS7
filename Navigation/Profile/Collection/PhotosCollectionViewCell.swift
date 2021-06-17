@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
@@ -14,14 +15,12 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         let photos = UIImageView()
         photos.contentMode = .scaleAspectFill
         photos.clipsToBounds = true
-        photos.translatesAutoresizingMaskIntoConstraints = false
         
         return photos
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
     }
     
@@ -36,15 +35,12 @@ class PhotosCollectionViewCell: UICollectionViewCell {
 
 private extension PhotosCollectionViewCell {
     func setupViews() {
-        contentView.addSubview(photosImageView)
         
-        let constraints = [
-            photosImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            photosImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            photosImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            photosImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            photosImageView.heightAnchor.constraint(equalTo: photosImageView.widthAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        contentView.addSubview(photosImageView)
+        photosImageView.snp.makeConstraints { maker in
+            maker.top.bottom.left.equalToSuperview()
+            maker.height.equalTo(photosImageView)
+            maker.width.equalTo(contentView)
+        }
     }
 }
