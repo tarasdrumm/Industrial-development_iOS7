@@ -9,7 +9,17 @@
 import UIKit
 import SnapKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    
+    func validate(login: String?) -> Bool
+    func validate(password: String?) -> Bool
+}
+
 final class LogInViewController: UIViewController {
+    
+    // MARK: Delegate
+    
+    var delegate: LoginViewControllerDelegate?
     
     // MARK: Subviews
     
@@ -93,6 +103,7 @@ final class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
         setupSubviews()
         
         navigationController?.navigationBar.isHidden = true
@@ -167,13 +178,40 @@ final class LogInViewController: UIViewController {
     // MARK: Button action
 
     @objc private func buttonTapped() {
+        
+        guard
+            delegate?.validate(login: emailTextField.text) ?? false,
+            delegate?.validate(password: passwordTextField.text) ?? false
+        else {
+            showValidationError()
+            return
+        }
+        
+        showProfile()
+    }
+
+    // MARK: Routing
+    
+    private func showProfile() {
         let profileVC = ProfileViewController()
         show(profileVC, sender: nil)
     }
-
-    //MARK: Extension alpha
+    
+    private func showValidationError() {
+        let alertController = UIAlertController(
+            title: "Validation error",
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+       
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
+//MARK: Extension alpha
 extension UIImage {
     func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -183,4 +221,3 @@ extension UIImage {
         return newImage!
     }
 }
-
