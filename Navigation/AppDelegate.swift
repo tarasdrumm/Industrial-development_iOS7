@@ -30,14 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
       
-        let feedViewController = FeedViewController()
-        let logInViewController = LogInViewController()
+        let feedViewController = FeedFactory.build()
         
-        feedViewController.title = "Feed"
-        logInViewController.title = "Profile"
+        let logInViewController = LoginFactory.build()
         
-        let feedNavigationViewController = UINavigationController(rootViewController: feedViewController)
-        let logInNavigationViewController = UINavigationController(rootViewController: logInViewController)
+        let feedNavigationViewController = UINavigationController(
+            rootViewController: feedViewController
+        )
+        let logInNavigationViewController = UINavigationController(
+            rootViewController: logInViewController
+        )
         
         let tabBarVC = UITabBarController()
         tabBarVC.setViewControllers([feedNavigationViewController, logInNavigationViewController], animated: true)
