@@ -67,6 +67,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func configure(post: FeedPost) {
+        selectionStyle = .none
         authorNameLabel.text = post.author
         postImageView.image = UIImage(named: post.image)
         descriptionLabel.text = post.description

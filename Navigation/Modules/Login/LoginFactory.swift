@@ -8,17 +8,16 @@
 
 import UIKit
 
-// Pattern Factory
-
 final class LoginFactory {
     
-    static func build() -> UIViewController {
+    static func build(coordinator: LoginCoordinator) -> UIViewController {
      
         let logInViewController = LogInViewController()
         let loginInspector = LoginInspector()
+        let viewModel = LoginViewModel(delegate: loginInspector, coordinator: coordinator)
         
         logInViewController.title = "Profile"
-        logInViewController.delegate = loginInspector
+        logInViewController.viewModel = viewModel
         
         return logInViewController
     }

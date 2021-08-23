@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol LoginViewControllerDelegate: AnyObject {
+    
+    func validate(login: String?) -> Bool
+    func validate(password: String?) -> Bool
+}
+
 final class LoginInspector {
     
     init() {
