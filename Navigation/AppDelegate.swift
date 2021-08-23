@@ -14,8 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
 
+    private var appCoordinator: AppCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        configureAppApperance()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        appCoordinator = AppCoordinator(window: window!)
+        appCoordinator?.initialize()
+        
         print("Загрузка завершилась")
         
         return true
@@ -24,28 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         print(UIApplication.shared.backgroundTimeRemaining)
         // 1.7976931348623157e+308
-    }
-    
-    private func configureAppApperance() {
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-      
-        let feedViewController = FeedFactory.build()
-        
-        let logInViewController = LoginFactory.build()
-        
-        let feedNavigationViewController = UINavigationController(
-            rootViewController: feedViewController
-        )
-        let logInNavigationViewController = UINavigationController(
-            rootViewController: logInViewController
-        )
-        
-        let tabBarVC = UITabBarController()
-        tabBarVC.setViewControllers([feedNavigationViewController, logInNavigationViewController], animated: true)
-
-        self.window?.rootViewController = tabBarVC
-        self.window?.makeKeyAndVisible()
     }
 }
 

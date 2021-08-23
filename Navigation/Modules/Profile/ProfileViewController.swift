@@ -60,10 +60,10 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Profile"
-        setupTableView()
+        setupSubviews()
     }
     
-    private func setupTableView() {
+    private func setupSubviews() {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: postCellId)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: photosCellId)
         tableView.dataSource = self
@@ -77,7 +77,6 @@ final class ProfileViewController: UIViewController {
 }
 
  // MARK: - UITableViewDataSource
-
 extension ProfileViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,7 +105,6 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -125,8 +123,11 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.section == 0 else {
+            return
+        }
         tableView.deselectRow(at: indexPath, animated: true)
-        show(photosVC, sender: nil)
+        navigationController?.pushViewController(photosVC, animated: true)
     }
 }
 

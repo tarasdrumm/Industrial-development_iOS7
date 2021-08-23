@@ -9,17 +9,11 @@
 import UIKit
 import SnapKit
 
-protocol LoginViewControllerDelegate: AnyObject {
-    
-    func validate(login: String?) -> Bool
-    func validate(password: String?) -> Bool
-}
-
 final class LogInViewController: UIViewController {
     
-    // MARK: Delegate
+    //MARK: Public properties
     
-    var delegate: LoginViewControllerDelegate?
+    var viewModel: LoginViewModel?
     
     // MARK: Subviews
     
@@ -84,13 +78,13 @@ final class LogInViewController: UIViewController {
     }()
     
     private lazy var logInButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(1), for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
@@ -102,11 +96,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
         setupSubviews()
-        
-        navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -114,32 +104,20 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         scrollView.contentSize = contentView.bounds.size
     }
     
     override func viewDidDisappear(_ animated: Bool){
         super.viewDidDisappear(animated)
-    
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // MARK: Keyboard actions
-
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            scrollView.contentInset.bottom = keyboardSize.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        }
-    }
-
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset.bottom = .zero
-        scrollView.verticalScrollIndicatorInsets = .zero
-    }
+    //MARK: Convenience
     
     private func setupSubviews() {
+        view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
         
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { maker in
@@ -174,40 +152,26 @@ final class LogInViewController: UIViewController {
             maker.height.equalTo(50)
         }
     }
-   
-    // MARK: Button action
+    
+    // MARK: Actions
+
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
 
     @objc private func buttonTapped() {
+        viewModel?.loginInput = emailTextField.text
+        viewModel?.passwordInput = passwordTextField.text
         
-        guard
-            delegate?.validate(login: emailTextField.text) ?? false,
-            delegate?.validate(password: passwordTextField.text) ?? false
-        else {
-            showValidationError()
-            return
-        }
-        
-        showProfile()
-    }
-
-    // MARK: Routing
-    
-    private func showProfile() {
-        let profileVC = ProfileViewController()
-        show(profileVC, sender: nil)
-    }
-    
-    private func showValidationError() {
-        let alertController = UIAlertController(
-            title: "Validation error",
-            message: nil,
-            preferredStyle: .alert
-        )
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(okAction)
-       
-        present(alertController, animated: true, completion: nil)
+        viewModel?.didTapLoginButton()
     }
 }
 
