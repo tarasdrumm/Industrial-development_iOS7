@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ContainerView: UIView {
   
@@ -18,11 +19,16 @@ final class ContainerView: UIView {
     
     private let button: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .lightGray
         button.setTitle("Open post", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
-        button.titleLabel!.adjustsFontSizeToFitWidth = true
-        
+        button.layer.cornerRadius = 12
+        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+    
         return button
     }()
     
@@ -43,7 +49,11 @@ final class ContainerView: UIView {
     
     private func setupSubviews() {
         addSubview(button)
-        button.snp.makeConstraints { $0.edges.equalToSuperview() }
+        button.snp.makeConstraints { maker in
+            maker.center.equalToSuperview()
+            maker.width.equalTo(150)
+            maker.height.equalTo(50)
+        }
     }
     
     // MARK: Actions

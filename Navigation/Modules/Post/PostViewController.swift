@@ -18,7 +18,7 @@ class PostViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .black
         
         return label
     }()
@@ -27,14 +27,14 @@ class PostViewController: UIViewController {
         let statusLabel = UILabel()
         statusLabel.textAlignment = .center
         statusLabel.font = UIFont.systemFont(ofSize: 26, weight: .regular)
-        statusLabel.textColor = .white
+        statusLabel.textColor = .black
         
         return statusLabel
     }()
     
     private lazy var startButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = #colorLiteral(red: 1, green: 0.7132344318, blue: 1, alpha: 1)
+        button.backgroundColor = .lightGray
         button.setTitle("Обновить данные", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -52,7 +52,7 @@ class PostViewController: UIViewController {
         setupNavigationBar()
         setupLayout()
         
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .white
     }
     
     private func setupNavigationBar() {

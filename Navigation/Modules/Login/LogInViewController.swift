@@ -118,7 +118,7 @@ final class LogInViewController: UIViewController {
     private func setupSubviews() {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
-        
+
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { maker in
             maker.edges.equalTo(view)
@@ -170,7 +170,6 @@ final class LogInViewController: UIViewController {
     @objc private func buttonTapped() {
         viewModel?.loginInput = emailTextField.text
         viewModel?.passwordInput = passwordTextField.text
-        
         viewModel?.didTapLoginButton()
     }
 }

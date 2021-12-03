@@ -40,7 +40,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.navigationController = navigationController
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .white
         setupSubviews()
         setupNavigationBar()
         setupTabBarItemsImage()

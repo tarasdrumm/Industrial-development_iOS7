@@ -14,6 +14,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     private var photosImageView: UIImageView = {
         let photos = UIImageView()
         photos.contentMode = .scaleAspectFill
+        photos.layer.borderColor = UIColor.white.cgColor
+        photos.layer.borderWidth = 1
+        photos.layer.cornerRadius = 10
         photos.clipsToBounds = true
         
         return photos
