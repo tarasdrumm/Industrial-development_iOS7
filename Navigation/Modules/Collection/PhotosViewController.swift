@@ -16,7 +16,6 @@ final class PhotosViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentMode = .scaleAspectFill
@@ -32,11 +31,11 @@ final class PhotosViewController: UIViewController {
     
     let cellId = "CellId"
     
-    private let sectionInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    //private let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = false
         setupViews()
         title = "Photo Gallery"
@@ -44,7 +43,6 @@ final class PhotosViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupViews() {
@@ -74,7 +72,7 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
-    private var baseInset: CGFloat { return 8 }
+    private var baseInset: CGFloat { return 5 }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = (collectionView.frame.size.width - baseInset * 4) / 3
