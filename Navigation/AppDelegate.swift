@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator?.initialize()
         
-        print("Загрузка завершилась")
+        NetworkService.dataTask(configuration: .urlString("https://swapi.dev/api/people/8"))
+        NetworkService.dataTask(configuration: .urlString("https://swapi.dev/api/starships/3"))
+        NetworkService.dataTask(configuration: .urlString("https://swapi.dev/api/planets/5"))
         
         return true
     }
