@@ -31,4 +31,61 @@ class NetworkService {
         }
         .resume()
     }
+    
+    func todos(completion: @escaping (String) -> Void) {
+        let session = URLSession.shared
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos/") else {
+            return
+        }
+        let task = session.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                return
+            }
+            do {
+                let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                guard let objects = jsonObject as? [Any] else {
+                    return
+                }
+                guard let object = objects.first as? [String: Any] else {
+                    return
+                }
+                guard let title = object["title"] as? String else {
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    completion(title)
+                }
+                print(title)
+            }
+            catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func planets(completion: @escaping (String) -> Void) {
+        let session = URLSession.shared
+        guard let planetURL = URL(string: "https://swapi.dev/api/planets/1") else {
+            return
+        }
+        let planetTask = session.dataTask(with: planetURL) { data, response, error in
+            guard let data = data else {
+                return
+            }
+            do {
+                let planet = try JSONDecoder().decode(Planet.self, from: data)
+                
+                DispatchQueue.main.async {
+                    completion(planet.orbitalPeriod)
+                }
+                print(planet.orbitalPeriod)
+            }
+            catch {
+                print(error)
+            }
+        }
+        planetTask.resume()
+    }
 }

@@ -56,7 +56,6 @@ class PostViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        
         title = "Пост"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,

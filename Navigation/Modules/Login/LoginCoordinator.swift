@@ -31,11 +31,19 @@ final class LoginCoordinator {
         }
     }
     
+    func showLogIn(logInError: Bool) {
+        if logInError {
+            showLogInError()
+        } else {
+            showProfile()
+        }
+    }
+    
     // MARK: Convenience
     
-    private func showProfile() {
+    func showProfile(animated: Bool = true) {
         let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        navigationController?.pushViewController(profileVC, animated: animated)
     }
     
     private func showValidationError() {
@@ -47,6 +55,18 @@ final class LoginCoordinator {
         
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(okAction)
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showLogInError() {
+        let alertController = UIAlertController(
+            title: "User does not registered",
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        let tryAgainAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
+        alertController.addAction(tryAgainAction)
         navigationController?.present(alertController, animated: true, completion: nil)
     }
 }

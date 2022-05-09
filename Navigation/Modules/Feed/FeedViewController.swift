@@ -64,7 +64,6 @@ final class FeedViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Feed"
     }
     
     private func setupTabBarItemsImage() {

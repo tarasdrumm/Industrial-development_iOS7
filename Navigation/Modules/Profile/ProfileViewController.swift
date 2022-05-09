@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 final class ProfileViewController: UIViewController {
    
@@ -61,6 +62,13 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         title = "Profile"
         setupSubviews()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOutButtonTapped))
     }
     
     private func setupSubviews() {
@@ -72,6 +80,20 @@ final class ProfileViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
+        }
+    }
+    
+//    @objc private func showAlert() {
+//        let infoVC = ProfileViewController()
+//        present(infoVC, animated: true, completion: nil)
+//    }
+    
+    @objc private func signOutButtonTapped() {
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+        } catch let error {
+            print("Failed to sign out with error", error)
         }
     }
 }
