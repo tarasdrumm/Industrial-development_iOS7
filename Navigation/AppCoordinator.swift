@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class AppCoordinator {
     
@@ -31,9 +32,13 @@ final class AppCoordinator {
             
         let feedCoordinator = FeedCoordinator()
         let loginCoordinator = LoginCoordinator()
-                    
+        
         tabBarController = UITabBarController()
         tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize()],animated: true)
+        
+        if Auth.auth().currentUser != nil {
+            loginCoordinator.showProfile(animated: false)
+        }
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

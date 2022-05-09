@@ -20,6 +20,7 @@
 		26158FDD26D3686F0077F342 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26158FDC26D3686F0077F342 /* LoginViewModel.swift */; };
 		261EE005276224AA0027EC8C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261EE004276224AA0027EC8C /* NetworkService.swift */; };
 		261EE009276BBEBC0027EC8C /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261EE008276BBEBC0027EC8C /* AppConfiguration.swift */; };
+		26286A1F27EDCFE6006E5E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26286A1E27EDCFE5006E5E85 /* GoogleService-Info.plist */; };
 		263B32B0264285DE00ACACA3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3F025BC53AB0003FBFA /* PostTableViewCell.swift */; };
 		263B32B1264285DE00ACACA3 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3FA25CC09780003FBFA /* PhotosCollectionViewCell.swift */; };
 		263B32B2264285DE00ACACA3 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B5250CE27700A87020 /* FeedViewController.swift */; };
@@ -72,6 +73,7 @@
 		26158FDC26D3686F0077F342 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		261EE004276224AA0027EC8C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		261EE008276BBEBC0027EC8C /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		26286A1E27EDCFE5006E5E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		263B32C5264285DE00ACACA3 /* Navigation copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Navigation copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		263B32C6264285DE00ACACA3 /* Navigation copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy-Info.plist"; path = "/Users/tarasandreev/Desktop/Учеба/ДЗ - Блок 4/Andreev_iOS-7_DZ_1.1_1/Navigation/Navigation copy-Info.plist"; sourceTree = "<absolute>"; };
 		264A85252576AE1B00E23326 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				267E25B125B6F6F800979925 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
+				26286A1E27EDCFE5006E5E85 /* GoogleService-Info.plist */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			files = (
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				267E25B225B6F6F800979925 /* Assets.xcassets in Resources */,
+				26286A1F27EDCFE6006E5E85 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

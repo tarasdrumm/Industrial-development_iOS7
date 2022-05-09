@@ -11,6 +11,8 @@ import SnapKit
 
 class InfoViewController: UIViewController {
     
+    let service = NetworkService()
+    
     // MARK: Subviews
     
     private let button: UIButton = {
@@ -49,62 +51,17 @@ class InfoViewController: UIViewController {
     // MARK: Задача 1 (JSONSerialization)
     
     private func setupURLSession() {
-        let session = URLSession.shared
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos/") else {
-            return
+        service.todos { title in
+            self.titleLabel.text = title
         }
-        let task = session.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                return
-            }
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-                guard let objects = jsonObject as? [Any] else {
-                    return
-                }
-                guard let object = objects.first as? [String: Any] else {
-                    return
-                }
-                guard let title = object["title"] as? String else {
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    self.titleLabel.text = title
-                }
-                print(title)
-            }
-            catch {
-                print(error)
-            }
-        }
-        task.resume()
     }
     
     // MARK: Задача 2 (JSONDecoder)
     
     private func setupPlanetURL() {
-        let session = URLSession.shared
-        guard let planetURL = URL(string: "https://swapi.dev/api/planets/1") else {
-            return
+        service.planets { label in
+            self.orbitalPeriodLabel.text = label
         }
-        let planetTask = session.dataTask(with: planetURL) { data, response, error in
-            guard let data = data else {
-                return
-            }
-            do {
-                let planet = try JSONDecoder().decode(Planet.self, from: data)
-                
-                DispatchQueue.main.async {
-                    self.orbitalPeriodLabel.text = planet.orbitalPeriod
-                }
-                print(planet.orbitalPeriod)
-            }
-            catch {
-                print(error)
-            }
-        }
-        planetTask.resume()
     }
     
     //MARK: Convenience

@@ -39,6 +39,7 @@ final class LogInViewController: UIViewController {
     
     private lazy var emailTextField: UITextField = {
         let email = createTextField()
+        email.delegate = self
         email.placeholder = " Email of phone"
        
         return email
@@ -46,6 +47,7 @@ final class LogInViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let password = createTextField()
+        password.delegate = self
         password.placeholder = " Password"
         password.isSecureTextEntry = true
         
@@ -77,11 +79,27 @@ final class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var logInButton: UIButton = {
+    private lazy var registerButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 10
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
+                
+        return button
+    }()
+    
+    private lazy var loginButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.isEnabled = false
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
@@ -97,6 +115,7 @@ final class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        setupNavigationBar()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -113,11 +132,15 @@ final class LogInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    func clearFields() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     //MARK: Convenience
     
     private func setupSubviews() {
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = true
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { maker in
@@ -145,12 +168,23 @@ final class LogInViewController: UIViewController {
             maker.height.equalTo(100)
         }
         
-        contentView.addSubview(logInButton)
-        logInButton.snp.makeConstraints { maker in
+        contentView.addSubview(registerButton)
+        registerButton.snp.makeConstraints { maker in
             maker.top.equalTo(stackView.snp.bottom).offset(16)
             maker.left.right.equalToSuperview().inset(16)
             maker.height.equalTo(50)
         }
+        
+        contentView.addSubview(loginButton)
+        loginButton.snp.makeConstraints { maker in
+            maker.top.equalTo(registerButton.snp.bottom).offset(10)
+            maker.left.right.equalToSuperview().inset(16)
+            maker.height.equalTo(50)
+        }
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: Actions
@@ -167,7 +201,13 @@ final class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
 
-    @objc private func buttonTapped() {
+    @objc private func registerButtonTapped() {
+        viewModel?.loginInput = emailTextField.text
+        viewModel?.passwordInput = passwordTextField.text
+        viewModel?.didTapRegisterButton()
+    }
+    
+    @objc private func loginButtonTapped() {
         viewModel?.loginInput = emailTextField.text
         viewModel?.passwordInput = passwordTextField.text
         viewModel?.didTapLoginButton()
@@ -182,5 +222,12 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
+    }
+}
+
+extension LogInViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        loginButton.isEnabled = emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+        return true
     }
 }

@@ -7,6 +7,8 @@ target 'Navigation' do
 
   # Pods for Navigation
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
 end
 

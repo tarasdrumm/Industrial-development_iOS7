@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class LoginViewModel {
     
@@ -19,6 +20,7 @@ final class LoginViewModel {
     
     private let delegate: LoginViewControllerDelegate
     private let coordinator: LoginCoordinator
+    weak var vc: LogInViewController?
     
     // MARK: Init
     
@@ -32,8 +34,33 @@ final class LoginViewModel {
     
     // MARK: Interface
     
+    func didTapRegisterButton() {
+        
+        guard let loginInput = loginInput, !loginInput.isEmpty, let passwordInput = passwordInput, !passwordInput.isEmpty else {
+            self.coordinator.showNext(isError: true)
+            return
+        }
+
+        Auth.auth().createUser(withEmail: loginInput, password: passwordInput) { [weak self] result, error in
+            if error == nil {
+                self?.vc?.clearFields()
+            }
+            self?.coordinator.showNext(isError: error != nil)
+        }
+    }
+    
     func didTapLoginButton() {
-        let isValid = delegate.validate(login: loginInput) && delegate.validate(password: passwordInput)
-        coordinator.showNext(isError: !isValid)
+       
+        guard let loginInput = loginInput, !loginInput.isEmpty, let passwordInput = passwordInput, !passwordInput.isEmpty else {
+            self.coordinator.showLogIn(logInError: true)
+            return
+        }
+
+        Auth.auth().signIn(withEmail: loginInput, password: passwordInput) { [weak self] result, error in
+            if error == nil {
+                self?.vc?.clearFields()
+            }
+            self?.coordinator.showLogIn(logInError: error != nil)
+        }
     }
 }
