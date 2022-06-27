@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import RealmSwift
 
 final class LoginViewModel {
     
@@ -40,10 +41,15 @@ final class LoginViewModel {
             self.coordinator.showNext(isError: true)
             return
         }
-
         Auth.auth().createUser(withEmail: loginInput, password: passwordInput) { [weak self] result, error in
             if error == nil {
                 self?.vc?.clearFields()
+            }
+            let profileModel = ProfileModel()
+            profileModel.login = loginInput
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(profileModel)
             }
             self?.coordinator.showNext(isError: error != nil)
         }
@@ -59,6 +65,12 @@ final class LoginViewModel {
         Auth.auth().signIn(withEmail: loginInput, password: passwordInput) { [weak self] result, error in
             if error == nil {
                 self?.vc?.clearFields()
+            }
+            let profileModel = ProfileModel()
+            profileModel.login = loginInput
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(profileModel)
             }
             self?.coordinator.showLogIn(logInError: error != nil)
         }

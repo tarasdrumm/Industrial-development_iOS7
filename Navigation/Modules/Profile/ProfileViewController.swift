@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import RealmSwift
 
 final class ProfileViewController: UIViewController {
    
@@ -60,14 +61,24 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Profile"
+        setupRealm()
         setupSubviews()
         setupNavigationBar()
     }
     
+    private func setupRealm() {
+        let realm = try! Realm()
+        if let profileModel = realm.objects(ProfileModel.self).first {
+            title = profileModel.login
+            print(realm.objects(ProfileModel.self))
+        }
+        else {
+            title = "Profile"
+        }
+    }
+    
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOutButtonTapped))
     }
     
@@ -83,14 +94,13 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-//    @objc private func showAlert() {
-//        let infoVC = ProfileViewController()
-//        present(infoVC, animated: true, completion: nil)
-//    }
-    
     @objc private func signOutButtonTapped() {
         do {
             try Auth.auth().signOut()
+            let realm = try! Realm()
+            try! realm.write {
+                realm.deleteAll()
+            }
             self.navigationController?.popToRootViewController(animated: true)
         } catch let error {
             print("Failed to sign out with error", error)
