@@ -38,6 +38,7 @@
 		263B32C0264285DE00ACACA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267E25B125B6F6F800979925 /* Assets.xcassets */; };
 		264A85262576AE1B00E23326 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A85252576AE1B00E23326 /* ProfileTableHeaderView.swift */; };
 		264A852B2576AE8E00E23326 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264A852A2576AE8E00E23326 /* ProfileViewController.swift */; };
+		26504C1D286455B400C98ECA /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26504C1C286455B400C98ECA /* ProfileModel.swift */; };
 		267E25B225B6F6F800979925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267E25B125B6F6F800979925 /* Assets.xcassets */; };
 		26977F2925CD69BB004506BF /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977F2825CD69BB004506BF /* PhotosTableViewCell.swift */; };
 		26CEB3E625BC4AAE0003FBFA /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3E525BC4AAE0003FBFA /* FeedPost.swift */; };
@@ -78,6 +79,7 @@
 		263B32C6264285DE00ACACA3 /* Navigation copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy-Info.plist"; path = "/Users/tarasandreev/Desktop/Учеба/ДЗ - Блок 4/Andreev_iOS-7_DZ_1.1_1/Navigation/Navigation copy-Info.plist"; sourceTree = "<absolute>"; };
 		264A85252576AE1B00E23326 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		264A852A2576AE8E00E23326 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		26504C1C286455B400C98ECA /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		267E25B125B6F6F800979925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26977F2825CD69BB004506BF /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		26CEB3E525BC4AAE0003FBFA /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				2614422D279883E700FA6405 /* DataModel.swift */,
 				26F4A12127B045DB00AF089B /* PlanetModel.swift */,
+				26504C1C286455B400C98ECA /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				26CF79B726BD550B004F8A81 /* LoginInspector.swift in Sources */,
 				26158FD926D2093A0077F342 /* FeedCoordinator.swift in Sources */,
 				26F9EDBC25AC49CC00C1CFAB /* LogInViewController.swift in Sources */,
+				26504C1D286455B400C98ECA /* ProfileModel.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				261EE009276BBEBC0027EC8C /* AppConfiguration.swift in Sources */,
 				26CEB3F725CBEF460003FBFA /* PhotosViewController.swift in Sources */,

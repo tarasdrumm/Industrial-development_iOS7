@@ -31,8 +31,6 @@ final class PhotosViewController: UIViewController {
     
     let cellId = "CellId"
     
-    //private let sectionInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

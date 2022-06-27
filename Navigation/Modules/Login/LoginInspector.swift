@@ -19,7 +19,6 @@ final class LoginInspector {
     init() {
         print("Inspector init")
     }
-    
     deinit {
         print("Inspector deinit")
     }
