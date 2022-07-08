@@ -32,9 +32,10 @@ final class AppCoordinator {
             
         let feedCoordinator = FeedCoordinator()
         let loginCoordinator = LoginCoordinator()
+        let postsCoordinator = PostsCoordinator()
         
         tabBarController = UITabBarController()
-        tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize()],animated: true)
+        tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize(), postsCoordinator.initialize()],animated: true)
         
         if Auth.auth().currentUser != nil {
             loginCoordinator.showProfile(animated: false)
