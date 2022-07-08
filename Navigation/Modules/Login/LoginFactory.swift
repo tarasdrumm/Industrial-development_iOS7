@@ -16,11 +16,8 @@ final class LoginFactory {
         let loginInspector = LoginInspector()
         let viewModel = LoginViewModel(delegate: loginInspector, coordinator: coordinator)
         viewModel.vc = logInViewController
-        
         logInViewController.title = "Profile"
-       
         logInViewController.viewModel = viewModel
-        
         return logInViewController
     }
 }

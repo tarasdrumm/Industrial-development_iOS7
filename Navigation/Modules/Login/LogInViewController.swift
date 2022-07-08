@@ -20,20 +20,17 @@ final class LogInViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.bounces = false
-        
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        
         return contentView
     }()
     
     private lazy var logoImageView: UIImageView = {
         let logoView = UIImageView()
         logoView.image = #imageLiteral(resourceName: "logo")
-        
         return logoView
     }()
     
@@ -41,7 +38,6 @@ final class LogInViewController: UIViewController {
         let email = createTextField()
         email.delegate = self
         email.placeholder = " Email of phone"
-       
         return email
     }()
     
@@ -50,7 +46,6 @@ final class LogInViewController: UIViewController {
         password.delegate = self
         password.placeholder = " Password"
         password.isSecureTextEntry = true
-        
         return password
     }()
     
@@ -62,7 +57,6 @@ final class LogInViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.textColor = .black
         textField.autocapitalizationType = .none
-
         return textField
     }
     
@@ -75,7 +69,6 @@ final class LogInViewController: UIViewController {
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.masksToBounds = true
         stackView.backgroundColor = .systemGray6
-                        
         return stackView
     }()
     
@@ -90,7 +83,6 @@ final class LogInViewController: UIViewController {
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
-                
         return button
     }()
     
@@ -106,7 +98,6 @@ final class LogInViewController: UIViewController {
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
-                
         return button
     }()
     

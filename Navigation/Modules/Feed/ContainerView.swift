@@ -28,7 +28,6 @@ final class ContainerView: UIView {
         button.layer.shadowRadius = 4.0
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-    
         return button
     }()
     
