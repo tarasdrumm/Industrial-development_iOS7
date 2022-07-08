@@ -10,7 +10,6 @@ import UIKit
 
 class PostsFactory {
     static func build() -> UIViewController {
-        //let output = LikedPostPresenter()
         let likedPostsVC = LikedPostsViewController()
         likedPostsVC.title = "Liked Posts"
         return likedPostsVC

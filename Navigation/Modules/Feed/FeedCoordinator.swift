@@ -12,12 +12,15 @@ final class FeedCoordinator {
     
     //MARK: Properties
     
-    private var navigationController: UINavigationController?
+    private var navigationController: UINavigationController
+    
+    init() {
+        navigationController = UINavigationController()
+    }
     
     func initialize() -> UIViewController {
         let viewController = FeedFactory.build()
-        navigationController = UINavigationController(rootViewController: viewController)
-        
-        return navigationController!
+        navigationController.pushViewController(viewController, animated: false)
+        return navigationController
     }
 }

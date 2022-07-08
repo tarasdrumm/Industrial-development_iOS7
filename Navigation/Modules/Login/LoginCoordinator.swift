@@ -19,7 +19,6 @@ final class LoginCoordinator {
     func initialize() -> UIViewController {
         let viewController = LoginFactory.build(coordinator: self)
         navigationController = UINavigationController(rootViewController: viewController)
-        
         return navigationController!
     }
     

@@ -11,12 +11,23 @@ import SnapKit
 
 class PostTableViewCell: UITableViewCell {
     
+    var onDoubleTapped: ((_ post: FeedPost) -> Void)?
+    
+    var post: FeedPost? {
+        didSet {
+            authorNameLabel.text = post?.author
+            postImageView.image = UIImage(named: post!.image)
+            descriptionLabel.text = post?.description
+            likesLabel.text = "Likes: \(post!.likes)"
+            viewsLabel.text = "Views: \(post!.views)"
+        }
+    }
+    
     private let authorNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 2
-        
         return label
     }()
     
@@ -27,7 +38,6 @@ class PostTableViewCell: UITableViewCell {
         postImage.contentMode = .scaleAspectFit
         postImage.clipsToBounds = false
         postImage.backgroundColor = .black
-        
         return postImage
     }()
     
@@ -36,7 +46,6 @@ class PostTableViewCell: UITableViewCell {
         description.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         description.textColor = .systemGray
         description.numberOfLines = 0
-        
         return description
     }()
     
@@ -44,7 +53,6 @@ class PostTableViewCell: UITableViewCell {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         likes.textColor = .black
-        
         return likes
     }()
     
@@ -52,7 +60,6 @@ class PostTableViewCell: UITableViewCell {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         views.textColor = .black
-        
         return views
     }()
   
@@ -63,7 +70,6 @@ class PostTableViewCell: UITableViewCell {
    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayout()
     }
     
     func configure(post: FeedPost) {
@@ -106,6 +112,17 @@ class PostTableViewCell: UITableViewCell {
             maker.top.equalTo(authorNameLabel.snp.bottom).offset(12)
             maker.left.right.equalToSuperview()
             maker.bottom.equalTo(descriptionLabel.snp.top).offset(-16)
+        }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(postTapped))
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.numberOfTapsRequired = 2
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func postTapped() {
+        if let post = post {
+            onDoubleTapped?(post)
         }
     }
 }

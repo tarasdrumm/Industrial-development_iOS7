@@ -33,8 +33,9 @@ class PhotosTableViewCell: UITableViewCell {
     
     private func setup() {
        
-        for _ in 0...3 {
+        for index in 0...3 {
             let imageView = UIImageView()
+            imageView.image = UIImage(named: Photos.images[index])
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = 6
             imageView.contentMode = .scaleAspectFill
