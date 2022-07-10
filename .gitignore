@@ -6,7 +6,6 @@ build/
 
 xcuserdata/
 *.xcuserstate
-*.xcworkspace
 *.xcworkspacedata
 
 /xcshareddata
