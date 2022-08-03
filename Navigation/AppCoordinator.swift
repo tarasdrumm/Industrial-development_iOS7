@@ -33,9 +33,11 @@ final class AppCoordinator {
         let feedCoordinator = FeedCoordinator()
         let loginCoordinator = LoginCoordinator()
         let postsCoordinator = PostsCoordinator()
+        let mapViewCoordinator = MapCoordinator()
         
         tabBarController = UITabBarController()
-        tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize(), postsCoordinator.initialize()],animated: true)
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize(), postsCoordinator.initialize(), mapViewCoordinator.initialize()],animated: true)
         
         if Auth.auth().currentUser != nil {
             loginCoordinator.showProfile(animated: false)
@@ -43,5 +45,6 @@ final class AppCoordinator {
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
+        //tabBarController?.tabBar.isHidden = false
     }
 }

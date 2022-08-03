@@ -48,6 +48,9 @@
 		26912996287832A000A6BF0A /* LikedPosts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26912994287832A000A6BF0A /* LikedPosts+CoreDataProperties.swift */; };
 		26912998287832F300A6BF0A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26912997287832F300A6BF0A /* CoreDataStack.swift */; };
 		26977F2925CD69BB004506BF /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26977F2825CD69BB004506BF /* PhotosTableViewCell.swift */; };
+		26AC2289289A7A6900817966 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC2288289A7A6900817966 /* MapViewController.swift */; };
+		26AC228C289A7C3500817966 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC228B289A7C3500817966 /* MapCoordinator.swift */; };
+		26AC228E289A7C7F00817966 /* MapFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC228D289A7C7F00817966 /* MapFactory.swift */; };
 		26CEB3E625BC4AAE0003FBFA /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3E525BC4AAE0003FBFA /* FeedPost.swift */; };
 		26CEB3F125BC53AB0003FBFA /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3F025BC53AB0003FBFA /* PostTableViewCell.swift */; };
 		26CEB3F725CBEF460003FBFA /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CEB3F625CBEF460003FBFA /* PhotosViewController.swift */; };
@@ -96,6 +99,9 @@
 		26912994287832A000A6BF0A /* LikedPosts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikedPosts+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		26912997287832F300A6BF0A /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		26977F2825CD69BB004506BF /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		26AC2288289A7A6900817966 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		26AC228B289A7C3500817966 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		26AC228D289A7C7F00817966 /* MapFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFactory.swift; sourceTree = "<group>"; };
 		26CEB3E525BC4AAE0003FBFA /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		26CEB3F025BC53AB0003FBFA /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		26CEB3F625CBEF460003FBFA /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +231,16 @@
 			path = LikedPosts;
 			sourceTree = "<group>";
 		};
+		26AC228A289A7A7300817966 /* Geolocation */ = {
+			isa = PBXGroup;
+			children = (
+				26AC2288289A7A6900817966 /* MapViewController.swift */,
+				26AC228B289A7C3500817966 /* MapCoordinator.swift */,
+				26AC228D289A7C7F00817966 /* MapFactory.swift */,
+			);
+			path = Geolocation;
+			sourceTree = "<group>";
+		};
 		26CEB3E825BC4B140003FBFA /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +274,7 @@
 		26CF79B026BD5359004F8A81 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				26AC228A289A7A7300817966 /* Geolocation */,
 				26CF79B126BD53AF004F8A81 /* Feed */,
 				26CEB3E825BC4B140003FBFA /* Login */,
 				264A85242576AD9100E23326 /* Profile */,
@@ -476,6 +493,7 @@
 			files = (
 				26912998287832F300A6BF0A /* CoreDataStack.swift in Sources */,
 				26158FDD26D3686F0077F342 /* LoginViewModel.swift in Sources */,
+				26AC228C289A7C3500817966 /* MapCoordinator.swift in Sources */,
 				26912995287832A000A6BF0A /* LikedPosts+CoreDataClass.swift in Sources */,
 				26CEB3F125BC53AB0003FBFA /* PostTableViewCell.swift in Sources */,
 				26CEB3FB25CC09780003FBFA /* PhotosCollectionViewCell.swift in Sources */,
@@ -505,8 +523,10 @@
 				26CEB3E625BC4AAE0003FBFA /* FeedPost.swift in Sources */,
 				264A85262576AE1B00E23326 /* ProfileTableHeaderView.swift in Sources */,
 				264A852B2576AE8E00E23326 /* ProfileViewController.swift in Sources */,
+				26AC2289289A7A6900817966 /* MapViewController.swift in Sources */,
 				2691298B28782E5A00A6BF0A /* PostsCoordinator.swift in Sources */,
 				26912996287832A000A6BF0A /* LikedPosts+CoreDataProperties.swift in Sources */,
+				26AC228E289A7C7F00817966 /* MapFactory.swift in Sources */,
 				26CF79B526BD54DC004F8A81 /* LoginFactory.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 			);
