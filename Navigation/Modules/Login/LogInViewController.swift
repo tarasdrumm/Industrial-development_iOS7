@@ -206,6 +206,7 @@ final class LogInViewController: UIViewController {
 }
 
 //MARK: Extension alpha
+
 extension UIImage {
     func alpha(_ value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)

@@ -84,6 +84,7 @@ final class ProfileViewController: UIViewController {
 }
 
  // MARK: - UITableViewDataSource
+
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -127,6 +128,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
+
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

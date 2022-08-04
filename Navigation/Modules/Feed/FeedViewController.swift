@@ -67,7 +67,7 @@ final class FeedViewController: UIViewController {
     }
     
     private func setupTabBarItemsImage() {
-        ["house.fill", "person.fill", "heart.fill"]
+        ["house.fill", "person.fill", "heart.fill", "mappin.and.ellipse"]
             .enumerated()
             .forEach { (index, imageName) in
                 tabBarController?.tabBar.items?[index].image = UIImage(systemName: imageName)
