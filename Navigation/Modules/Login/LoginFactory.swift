@@ -16,7 +16,7 @@ final class LoginFactory {
         let loginInspector = LoginInspector()
         let viewModel = LoginViewModel(delegate: loginInspector, coordinator: coordinator)
         viewModel.vc = logInViewController
-        logInViewController.title = "Profile"
+        logInViewController.title = "logInViewControllerTitle".localized(file: "LocalizationTabBar")
         logInViewController.viewModel = viewModel
         return logInViewController
     }

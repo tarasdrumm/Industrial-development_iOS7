@@ -12,7 +12,7 @@ class FeedFactory {
     static func build() -> UIViewController {
         let output = PostPresenter()
         let feedViewController = FeedViewController(output: output)
-        feedViewController.title = "Feed"
+        feedViewController.title = "feedViewControllerTitle".localized(file: "LocalizationTabBar")
         return feedViewController
     }
 }

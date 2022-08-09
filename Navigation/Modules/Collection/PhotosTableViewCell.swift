@@ -41,8 +41,8 @@ class PhotosTableViewCell: UITableViewCell {
             imageView.contentMode = .scaleAspectFill
             stackView.addArrangedSubview(imageView)
         }
-        
-        photoLabel.text = "Photos"
+        let photoLabelText = "photoLabelText".localized(file: "LocalizationProfileViewController")
+        photoLabel.text = photoLabelText
         photoLabel.textColor = .black
         photoLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
     

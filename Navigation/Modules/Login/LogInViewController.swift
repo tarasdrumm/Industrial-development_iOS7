@@ -37,14 +37,16 @@ final class LogInViewController: UIViewController {
     private lazy var emailTextField: UITextField = {
         let email = createTextField()
         email.delegate = self
-        email.placeholder = " Email of phone"
+        let emailPlaceholder = "emailPlaceholder".localized(file: "LocalizationLoginViewController")
+        email.placeholder = emailPlaceholder
         return email
     }()
     
     private lazy var passwordTextField: UITextField = {
         let password = createTextField()
         password.delegate = self
-        password.placeholder = " Password"
+        let passwordPlaceholder = "passwordPlaceholder".localized(file: "LocalizationLoginViewController")
+        password.placeholder = passwordPlaceholder
         password.isSecureTextEntry = true
         return password
     }()
@@ -74,7 +76,8 @@ final class LogInViewController: UIViewController {
     
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Register", for: .normal)
+        let registerButtonTitle = "registerButtonTitle".localized(file: "LocalizationLoginViewController")
+        button.setTitle(registerButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true
@@ -89,7 +92,8 @@ final class LogInViewController: UIViewController {
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.isEnabled = false
-        button.setTitle("Log In", for: .normal)
+        let logInButtonTitle = "logInButtonTitle".localized(file: "LocalizationLoginViewController")
+        button.setTitle(logInButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true

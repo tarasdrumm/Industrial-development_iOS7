@@ -44,27 +44,30 @@ final class LoginCoordinator {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: animated)
     }
-    
+ 
     private func showValidationError() {
+        let validationTitle = "validationTitle".localized(file: "LocalizationLoginViewController")
         let alertController = UIAlertController(
-            title: "Validation error",
+            title: validationTitle,
             message: nil,
             preferredStyle: .alert
         )
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let okActionTitle = "okActionTitle".localized(file: "LocalizationLoginViewController")
+        let okAction = UIAlertAction(title: okActionTitle, style: .default, handler: nil)
         alertController.addAction(okAction)
         navigationController?.present(alertController, animated: true, completion: nil)
     }
     
     private func showLogInError() {
+        let userRegisterTitle = "userRegisterTitle".localized(file: "LocalizationLoginViewController")
         let alertController = UIAlertController(
-            title: "User does not registered",
+            title: userRegisterTitle,
             message: nil,
             preferredStyle: .alert
         )
         
-        let tryAgainAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
+        let tryAgainActionTitle = "tryAgainActionTitle".localized(file: "LocalizationLoginViewController")
+        let tryAgainAction = UIAlertAction(title: tryAgainActionTitle, style: .default, handler: nil)
         alertController.addAction(tryAgainAction)
         navigationController?.present(alertController, animated: true, completion: nil)
     }

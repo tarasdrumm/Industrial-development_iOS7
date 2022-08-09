@@ -40,13 +40,15 @@ final class ProfileViewController: UIViewController {
             print(realm.objects(ProfileModel.self))
         }
         else {
-            title = "Profile"
+            title = ""
         }
     }
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOutButtonTapped))
+        
+        let buttonSetTitle = "signOutButtonText".localized(file: "LocalizationProfileViewController")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: buttonSetTitle, style: .done, target: self, action: #selector(signOutButtonTapped))
     }
     
     private func setupTableView() {

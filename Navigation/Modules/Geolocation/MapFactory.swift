@@ -10,8 +10,8 @@ import UIKit
 
 class MapFactory {
     static func build() -> UIViewController {
-        let mapVC = MapViewController()
-        mapVC.title = "Map"
-        return mapVC
+        let mapViewController = MapViewController()
+        mapViewController.title = "mapViewControllerTitle".localized(file: "LocalizationTabBar")
+        return mapViewController
     }
 }

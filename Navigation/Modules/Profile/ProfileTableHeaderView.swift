@@ -19,7 +19,6 @@ class ProfileTableHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
-        
         return imageView
     }()
 
@@ -27,8 +26,8 @@ class ProfileTableHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.text = "Hipster cat"
-        
+        let nameLabelText = "nameLabelText".localized(file: "LocalizationProfileHeaderView")
+        label.text = nameLabelText
         return label
     }()
     
@@ -36,8 +35,13 @@ class ProfileTableHeaderView: UIView {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.textColor = .gray
-        textField.placeholder = "Waiting for something..."
-        
+        let statusTextFieldText = "statusTextFieldText".localized(file: "LocalizationProfileHeaderView")
+        textField.placeholder = statusTextFieldText
+        textField.layer.borderWidth = 0.5
+        textField.layer.cornerRadius = 3
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.masksToBounds = true
+        textField.backgroundColor = .white
         return textField
     }()
     
@@ -45,20 +49,21 @@ class ProfileTableHeaderView: UIView {
         let statusLabel = UILabel()
         statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusLabel.textColor = .gray
-        statusLabel.text = " Set your status"
+        let statusLabelText = "statusLabelText".localized(file: "LocalizationProfileHeaderView")
+        statusLabel.text = statusLabelText
         statusLabel.layer.borderWidth = 1
-        statusLabel.layer.cornerRadius = 12
+        statusLabel.layer.cornerRadius = 6
         statusLabel.layer.borderColor = UIColor.black.cgColor
         statusLabel.layer.masksToBounds = true
         statusLabel.backgroundColor = .white
-        
         return statusLabel
     }()
     
     private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
-        button.setTitle("Show status", for: .normal)
+        let buttonSetTitle = "buttonSetTitle".localized(file: "LocalizationProfileHeaderView")
+        button.setTitle(buttonSetTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.layer.cornerRadius = 12
@@ -95,6 +100,7 @@ class ProfileTableHeaderView: UIView {
         statusTextField.snp.makeConstraints { maker in
             maker.top.equalTo(nameLabel.snp.bottom).offset(0)
             maker.left.equalTo(avatarImageView.snp.right).offset(16)
+            maker.height.equalTo(20)
         }
         
         addSubview(statusLabel)
@@ -102,7 +108,7 @@ class ProfileTableHeaderView: UIView {
             maker.top.equalTo(statusTextField.snp.bottom).offset(5)
             maker.left.equalTo(avatarImageView.snp.right).offset(16)
             maker.right.equalToSuperview().inset(16)
-            maker.height.equalTo(40)
+            maker.height.equalTo(30)
         }
         
         addSubview(actionButton)
@@ -113,8 +119,12 @@ class ProfileTableHeaderView: UIView {
         }
     }
 
-    @objc private func buttonTapped() {
-        print(statusTextField.text!)
+    @objc func buttonTapped() {
+        if statusTextField.text != nil && statusTextField.text != "" {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+            statusTextField.resignFirstResponder()
+        }
     }
 }
 

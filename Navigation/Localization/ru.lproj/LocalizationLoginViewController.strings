@@ -1,0 +1,16 @@
+/* 
+  LocalizationLoginViewController.strings
+  Navigation
+
+  Created by Тарас Андреев on 09.08.2022.
+  Copyright © 2022 Artem Novichkov. All rights reserved.
+*/
+
+"emailPlaceholder" = " Введите email или телефон";
+"passwordPlaceholder" = " Пароль";
+"registerButtonTitle" = "Зарегистрировать";
+"logInButtonTitle" = "Войти";
+"validationTitle" = "Ошибка регистрации";
+"okActionTitle" = "Хорошо";
+"userRegisterTitle" = "Пользователь не зарегистрирован";
+"tryAgainActionTitle" = "Попробуйте снова";

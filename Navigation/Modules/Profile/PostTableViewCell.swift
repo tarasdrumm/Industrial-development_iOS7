@@ -18,8 +18,12 @@ class PostTableViewCell: UITableViewCell {
             authorNameLabel.text = post?.author
             postImageView.image = UIImage(named: post!.image)
             descriptionLabel.text = post?.description
-            likesLabel.text = "Likes: \(post!.likes)"
-            viewsLabel.text = "Views: \(post!.views)"
+            
+            let likesLabelText = "likesLabelText".localized(file: "LocalizationProfileViewController")
+            self.likesLabel.text = "\(likesLabelText): \(post!.likes)"
+            
+            let viewsLableText = "viewsLableText".localized(file: "LocalizationProfileViewController")
+            self.viewsLabel.text = "\(viewsLableText): \(post!.views)"
         }
     }
     
@@ -72,15 +76,17 @@ class PostTableViewCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func configure(post: FeedPost) {
-        selectionStyle = .none
-        authorNameLabel.text = post.author
-        postImageView.image = UIImage(named: post.image)
-        descriptionLabel.text = post.description
-        likesLabel.text = "Likes: \(post.likes)"
-        viewsLabel.text = "Views: \(post.views)"
-    }
-    
+//    func configure(post: FeedPost) {
+//        selectionStyle = .none
+//        authorNameLabel.text = post.author
+//        postImageView.image = UIImage(named: post.image)
+//        descriptionLabel.text = post.description
+//        let likesLabelText = "likesLabelText".localized(file: "LocalizationProfileViewController")
+//        self.likesLabel.text = "\(likesLabelText): \(post.likes)"
+//        let viewsLableText = "viewsLableText".localized(file: "LocalizationProfileViewController")
+//        self.viewsLabel.text = "\(viewsLableText): \(post.views)"
+//    }
+
     private func setupLayout() {
         
         contentView.addSubview(authorNameLabel)

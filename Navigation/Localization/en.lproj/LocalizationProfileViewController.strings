@@ -1,0 +1,14 @@
+/* 
+  LocalizationProfileViewController.strings
+  Navigation
+
+  Created by Тарас Андреев on 09.08.2022.
+  Copyright © 2022 Artem Novichkov. All rights reserved.
+*/
+
+
+"signOutButtonText" = "Sign Out";
+"photoLabelText" = "Photos";
+"photoGalleryTitle" = "Photo Gallery";
+"likesLabelText" = "Likes";
+"viewsLableText" = "Views";

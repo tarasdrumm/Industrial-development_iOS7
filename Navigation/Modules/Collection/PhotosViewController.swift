@@ -34,9 +34,8 @@ final class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.navigationBar.isHidden = false
         setupViews()
-        title = "Photo Gallery"
+        setupNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,6 +49,12 @@ final class PhotosViewController: UIViewController {
             maker.top.equalToSuperview().inset(16)
             maker.left.right.bottom.equalToSuperview()
         }
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        let photoGalleryTitle = "photoGalleryTitle".localized(file: "LocalizationProfileViewController")
+        title = photoGalleryTitle
     }
 }
 
