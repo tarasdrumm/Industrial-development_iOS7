@@ -152,8 +152,10 @@ class MapViewController: UIViewController {
         
         let point = gestureRecognizer.location(in: mapView)
         let coordinates = mapView.convert(point, toCoordinateFrom: mapView)
-        let newPinAlertTitle = "Добавить новую метку"
-        let newPinAlertButton = "Сохранить"
+        
+        let newPinAlertTitle = "newPinAlert".localized(file: "LocalizationMap")
+        let newPinAlertButton = "alertButton".localized(file: "LocalizationMap")
+        
         let alertVC = UIAlertController(title: newPinAlertTitle, message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: newPinAlertButton, style: .default) { _ in
             guard let title = alertVC.textFields?.first?.text else { return }

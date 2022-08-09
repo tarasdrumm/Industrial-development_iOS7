@@ -18,7 +18,6 @@ class LikedPostsViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupViews()
-        self.title = "Liked Posts"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -20,7 +20,8 @@ final class ContainerView: UIView {
     private let button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .lightGray
-        button.setTitle("Open post", for: .normal)
+        let buttonSetTitle = "buttonSetTitle".localized(file: "LocalizationFeedViewController")
+        button.setTitle(buttonSetTitle, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
         button.layer.cornerRadius = 12

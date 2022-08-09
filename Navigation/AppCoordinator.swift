@@ -29,7 +29,7 @@ final class AppCoordinator {
         guard tabBarController == nil else {
             return
         }
-            
+   
         let feedCoordinator = FeedCoordinator()
         let loginCoordinator = LoginCoordinator()
         let postsCoordinator = PostsCoordinator()
@@ -45,6 +45,5 @@ final class AppCoordinator {
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
-        //tabBarController?.tabBar.isHidden = false
     }
 }

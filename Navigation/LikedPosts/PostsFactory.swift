@@ -10,8 +10,8 @@ import UIKit
 
 class PostsFactory {
     static func build() -> UIViewController {
-        let likedPostsVC = LikedPostsViewController()
-        likedPostsVC.title = "Liked Posts"
-        return likedPostsVC
+        let likedPostsViewController = LikedPostsViewController()
+        likedPostsViewController.title = "likedPostsViewControllerTitle".localized(file: "LocalizationTabBar")
+        return likedPostsViewController
     }
 }
