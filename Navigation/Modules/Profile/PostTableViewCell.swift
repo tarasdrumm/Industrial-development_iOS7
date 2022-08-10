@@ -30,7 +30,7 @@ class PostTableViewCell: UITableViewCell {
     private let authorNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
+        label.textColor = SetupColor.textColorPosts
         label.numberOfLines = 2
         return label
     }()
@@ -48,7 +48,7 @@ class PostTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let description = UILabel()
         description.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        description.textColor = .systemGray
+        description.textColor = SetupColor.textColorPosts
         description.numberOfLines = 0
         return description
     }()
@@ -56,14 +56,14 @@ class PostTableViewCell: UITableViewCell {
     private let likesLabel: UILabel = {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        likes.textColor = .black
+        likes.textColor = SetupColor.textColorPosts
         return likes
     }()
     
     private let viewsLabel: UILabel = {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        views.textColor = .black
+        views.textColor = SetupColor.textColorPosts
         return views
     }()
   
@@ -118,6 +118,7 @@ class PostTableViewCell: UITableViewCell {
             maker.top.equalTo(authorNameLabel.snp.bottom).offset(12)
             maker.left.right.equalToSuperview()
             maker.bottom.equalTo(descriptionLabel.snp.top).offset(-16)
+            maker.height.equalTo(260)
         }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(postTapped))

@@ -13,10 +13,10 @@ class ProfileTableHeaderView: UIView {
     
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "top9-1")
+        imageView.image = #imageLiteral(resourceName: "Image11")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 3
+        imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
@@ -25,7 +25,7 @@ class ProfileTableHeaderView: UIView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = SetupColor.textColor
         let nameLabelText = "nameLabelText".localized(file: "LocalizationProfileHeaderView")
         label.text = nameLabelText
         return label
@@ -34,34 +34,35 @@ class ProfileTableHeaderView: UIView {
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        textField.textColor = .gray
+        textField.textColor = SetupColor.statusColor
+        textField.tintColor = SetupColor.cursorColor
+        textField.backgroundColor = SetupColor.statusBackgroundColor
         let statusTextFieldText = "statusTextFieldText".localized(file: "LocalizationProfileHeaderView")
         textField.placeholder = statusTextFieldText
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 3
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.masksToBounds = true
-        textField.backgroundColor = .white
         return textField
     }()
     
     private lazy var statusLabel: UILabel = {
         let statusLabel = UILabel()
         statusLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        statusLabel.textColor = .gray
+        statusLabel.textColor = SetupColor.statusColor
+        statusLabel.backgroundColor = SetupColor.statusBackgroundColor
         let statusLabelText = "statusLabelText".localized(file: "LocalizationProfileHeaderView")
         statusLabel.text = statusLabelText
         statusLabel.layer.borderWidth = 1
         statusLabel.layer.cornerRadius = 6
         statusLabel.layer.borderColor = UIColor.black.cgColor
         statusLabel.layer.masksToBounds = true
-        statusLabel.backgroundColor = .white
         return statusLabel
     }()
     
     private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
+        button.backgroundColor = SetupColor.buttonColor
         let buttonSetTitle = "buttonSetTitle".localized(file: "LocalizationProfileHeaderView")
         button.setTitle(buttonSetTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -71,7 +72,6 @@ class ProfileTableHeaderView: UIView {
         button.layer.shadowRadius = 4.0
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        
         return button
     }()
 

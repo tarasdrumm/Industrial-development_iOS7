@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        button.backgroundColor = SetupColor.buttonColor
         button.setTitle(" Удалить все метки ", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(removeAllPins), for: .touchUpInside)
@@ -42,7 +42,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = SetupColor.backgroundColor
         setupNavigationBar()
         setupSubviews()
         configureMap()

@@ -17,24 +17,27 @@ class InfoViewController: UIViewController {
     
     private let button: UIButton = {
         let button = UIButton()
-        button.setTitle("Show alert", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = SetupColor.buttonColor
+        button.setTitle(" Show alert ", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        
+        button.layer.cornerRadius = 12
+        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
         return button
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        
         return label
     }()
     
     private let orbitalPeriodLabel: UILabel = {
         let orbitalPeriodLabel = UILabel()
         orbitalPeriodLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        
         return orbitalPeriodLabel
     }()
     
@@ -42,7 +45,7 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = SetupColor.backgroundColor
         setupLayout()
         setupURLSession()
         setupPlanetURL()

@@ -25,7 +25,7 @@ class LikedPostsViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = SetupColor.backgroundColor
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(
@@ -65,7 +65,6 @@ extension LikedPostsViewController: UITableViewDataSource, UITableViewDelegate {
                              views: Int(likedPost.postViews))
         
         cell.post = post
-        
         return cell
     }
 }

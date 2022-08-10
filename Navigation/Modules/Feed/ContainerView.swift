@@ -19,10 +19,10 @@ final class ContainerView: UIView {
     
     private let button: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .lightGray
+        button.backgroundColor = SetupColor.buttonColor
         let buttonSetTitle = "buttonSetTitle".localized(file: "LocalizationFeedViewController")
         button.setTitle(buttonSetTitle, for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(buttonTaped), for: .touchUpInside)
         button.layer.cornerRadius = 12
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)

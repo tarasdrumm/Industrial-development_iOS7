@@ -38,6 +38,8 @@ final class AppCoordinator {
         tabBarController = UITabBarController()
         tabBarController?.tabBar.isHidden = false
         tabBarController?.setViewControllers([feedCoordinator.initialize(), loginCoordinator.initialize(), postsCoordinator.initialize(), mapViewCoordinator.initialize()],animated: true)
+        UITabBar.appearance().tintColor = SetupColor.tabBarItem
+        UINavigationBar.appearance().tintColor = SetupColor.navigationBarColorButton
         
         if Auth.auth().currentUser != nil {
             loginCoordinator.showProfile(animated: false)
