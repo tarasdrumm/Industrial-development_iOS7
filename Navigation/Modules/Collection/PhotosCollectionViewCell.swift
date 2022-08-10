@@ -18,7 +18,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         photos.layer.borderWidth = 1
         photos.layer.cornerRadius = 10
         photos.clipsToBounds = true
-        
         return photos
     }()
     

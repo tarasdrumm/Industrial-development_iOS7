@@ -53,11 +53,11 @@ final class LogInViewController: UIViewController {
     
     private func createTextField() -> UITextField {
         let textField = UITextField()
-        textField.backgroundColor = .systemGray6
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = SetupColor.textColor
+        textField.tintColor = SetupColor.cursorColor
         textField.autocapitalizationType = .none
         return textField
     }
@@ -70,7 +70,7 @@ final class LogInViewController: UIViewController {
         stackView.layer.cornerRadius = 10
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.masksToBounds = true
-        stackView.backgroundColor = .systemGray6
+        stackView.backgroundColor = SetupColor.stackView
         return stackView
     }()
     
@@ -82,10 +82,7 @@ final class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
+        button.backgroundColor = SetupColor.buttonColor
         return button
     }()
     
@@ -98,10 +95,7 @@ final class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
+        button.backgroundColor = SetupColor.buttonColor
         return button
     }()
     
@@ -135,7 +129,7 @@ final class LogInViewController: UIViewController {
     //MARK: Convenience
     
     private func setupSubviews() {
-        view.backgroundColor = .white
+        scrollView.backgroundColor = SetupColor.backgroundColor
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { maker in

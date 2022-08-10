@@ -43,7 +43,7 @@ class PhotosTableViewCell: UITableViewCell {
         }
         let photoLabelText = "photoLabelText".localized(file: "LocalizationProfileViewController")
         photoLabel.text = photoLabelText
-        photoLabel.textColor = .black
+        photoLabel.textColor = SetupColor.textColor
         photoLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
     
         stackView.axis = .horizontal

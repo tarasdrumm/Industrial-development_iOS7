@@ -33,7 +33,7 @@ final class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = SetupColor.backgroundColor
         setupViews()
         setupNavigationBar()
     }
